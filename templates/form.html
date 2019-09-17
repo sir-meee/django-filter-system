@@ -61,7 +61,7 @@
         <div class="form-row">
             <div class="form-group col-12">
                 <div class="input-group">
-                    <input type="search" class="form-control py-2 border-right-0 border" placeholder="Title Contains...">
+                    <input type="search" class="form-control py-2 border-right-0 border" name="title_contains" placeholder="Title Contains...">
                     <span class="input-group-append">
                         <div class="input-group-text bg-transparent">
                             <i class="fa fa-search"></i>
@@ -73,7 +73,7 @@
         <div class="form-row">
             <div class="form-group col-12">
                 <div class="input-group">
-                    <input type="search" class="form-control py-2 border-right-0 border" placeholder="Title Exact...">
+                    <input type="search" class="form-control py-2 border-right-0 border" name="id_exact" placeholder="Title Exact...">
                     <span class="input-group-append">
                         <div class="input-group-text bg-transparent">
                             <i class="fa fa-search"></i>
@@ -85,7 +85,7 @@
         <div class="form-row">
             <div class="form-group col-12">
                 <div class="input-group">
-                    <input type="search" class="form-control py-2 border-right-0 border" placeholder="Title or Author...">
+                    <input type="search" class="form-control py-2 border-right-0 border" name="title_or_author" placeholder="Title or Author...">
                     <span class="input-group-append">
                         <div class="input-group-text bg-transparent">
                             <i class="fa fa-search"></i>
@@ -144,19 +144,20 @@
 
       <div class="row">
         <ul>
-          
+            {% for journal in queryset %}
             <li>
-              
-              <span>Author: </span>
+              {{ journal.title }}
+              <span>Author: {{ journal.author.name }} </span>
               <span>
-                
-                  
-                
+                {% for cat in joutnal.categories %}
+                  {{ cat }}
+                {% endfor %}
               </span>
-              <span>Publish date: </span>
-              <span>View count: </span>
-              <span>Reviewed: </span>
+              <span>Publish date: {{ journal.publish_date }}</span>
+              <span>View count: {{ journal.views }}</span>
+              <span>Reviewed: {{ journal.reviewed }}</span>
             </li>
+            {% endfor %}
             <hr />
           
         </ul>
